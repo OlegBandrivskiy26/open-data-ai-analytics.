@@ -21,7 +21,7 @@ Dataset використовується з порталу відкритих д
 
 ---
 
-## ❓ Questions / Hypotheses for analysis
+## ❓ Questions / Hypotheses for analysis (edited in branch 2)
 
 1. Чи змінюються показники у даних з часом (тренд зростання або спадання)?
 2. Чи існує залежність між основними параметрами в наборі даних?
