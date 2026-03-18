@@ -1,0 +1,44 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Virtual environments
+.venv/
+venv/
+env/
+.env
+
+# Environment variables
+.env.*
+*.env
+
+# Data folders (large files)
+data/raw/
+data/tmp/
+data/processed/
+
+# MacOS
+.DS_Store
+
+# VSCode / IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Pytest
+.pytest_cache/
+
+# Build
+build/
+dist/
+*.egg-info/
+
+# Secrets
+secrets.json
+config.json
