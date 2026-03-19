@@ -1,0 +1,59 @@
+# CI job на self-hosted runner (локальний ПК/WSL)
+ci-selfhosted:
+  runs-on: [self-hosted, linux]
+
+  steps:
+    # 1. Копіюємо код
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    # 2. Встановлюємо Python
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.11"
+
+    # 3. Встановлюємо залежності
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    # 4. Перевірка стилю коду (flake8, warnings не падають CI)
+    - name: Run linter
+      run: |
+        pip install flake8
+        flake8 . || true
+
+    # 5. Запуск тестів та генерація звіту
+    - name: Run tests
+      run: |
+        pip install pytest
+        pytest tests/ --junitxml=report.xml
+
+    # 6. Генерація логів/графіків (опційно)
+    - name: Generate reports
+      run: |
+        mkdir -p logs
+        echo "Логи та графіки тут" > logs/sample_log.txt
+        mkdir -p graphs
+        echo "Графік 1" > graphs/sample_graph.png
+
+    # 7. Завантаження артефактів
+    - name: Upload test report
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-report-selfhosted
+        path: report.xml
+
+    - name: Upload logs
+      uses: actions/upload-artifact@v4
+      with:
+        name: logs-selfhosted
+        path: logs/
+
+    - name: Upload graphs
+      uses: actions/upload-artifact@v4
+      with:
+        name: graphs-selfhosted
+        path: graphs/
